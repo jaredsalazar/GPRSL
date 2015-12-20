@@ -3,12 +3,13 @@
 
 #include "Arduino.h"
 
-class GPRSL 
+class GPRSL
 {
 public:
   GPRSL();
-  void START();
+  boolean START();
   String POST(String var, char server[], char path[], char token[]);
+  String PUT(String var, char server[], char path[], char token[]);
 };
 
 #endif

@@ -248,9 +248,11 @@ static VMINT gprsResolveCallback(VMINT jobId, vm_soc_dns_result *pDNS, void *use
 static boolean gprsResolveDomainName(void *userData)
 {
 	LGPRSResolveContext *pContext = (LGPRSResolveContext*)userData;
+    VMINT apn = (LGPRS.getAPN() == VM_APN_USER_DEFINE)? VM_APN_USER_DEFINE : VM_TCP_APN_CMNET;
 
 	vm_log_info("vm_soc_get_host_by_name_ex: %s", pContext->domainName);
-	pContext->resolveState = vm_soc_get_host_by_name_ex(VM_TCP_APN_CMNET, 
+
+    pContext->resolveState = vm_soc_get_host_by_name_ex(apn, 
 														pContext->domainName, 
 														&pContext->dns, 
 														&gprsResolveCallback, 
